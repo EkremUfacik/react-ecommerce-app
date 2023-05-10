@@ -7,15 +7,18 @@ import headerImage from "../assets/ecommerce.jpg";
 
 const Dashboard = ({ items, setItems }) => {
   const { currentUser } = useSelector((state) => state.auth);
-  const { getProfile } = useAuthCalls();
+  const { getProfile, getAddress } = useAuthCalls();
   const { getAllItems } = useProductCalls();
   // const [items, setItems] = useState([]);
 
   useEffect(() => {
     currentUser && getProfile(currentUser?.id);
     getAllItems(setItems);
-    // console.log("dashboard");
+    getAddress();
+    console.log("dashboard useeffect");
   }, []);
+
+  console.log("dashboard");
 
   return (
     <div className="pt-16 ">

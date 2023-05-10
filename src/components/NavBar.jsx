@@ -18,7 +18,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavBar({ items, setItems }) {
+export default function NavBar({ setItems }) {
   const { currentUser, avatar, purse } = useSelector((state) => state.auth);
   const { productCount } = useSelector((state) => state.product);
   const [search, setSearch] = useState("");
@@ -30,17 +30,15 @@ export default function NavBar({ items, setItems }) {
     setSearch(e.target.value);
   };
 
-  const handleNavigate = (e) => {
-    navigate("/");
-    getAllItems(setItems);
-  };
-
-  console.log(search);
-
   const handleSearch = (e) => {
     e.preventDefault();
     getSearchedItems(search, setItems);
     setSearch("");
+  };
+
+  const handleNavigate = () => {
+    navigate("/");
+    getAllItems(setItems);
   };
 
   return (

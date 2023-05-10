@@ -4,7 +4,6 @@ import useAxios, { axiosPublic } from "./useAxios";
 import { updateProductCount } from "../features/productSlice";
 
 const useProductCalls = () => {
-  const navigate = useNavigate();
   const { axiosWithToken } = useAxios();
   const dispatch = useDispatch();
 
