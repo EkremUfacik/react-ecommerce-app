@@ -7,6 +7,7 @@ import NavBar from "../components/NavBar";
 import PrivateRouter from "./PrivateRouter";
 import Profile from "../pages/Profile";
 import Orders from "../pages/Orders";
+import { ToastContainer } from "react-toastify";
 
 const Approuter = () => {
   const [items, setItems] = useState([]);

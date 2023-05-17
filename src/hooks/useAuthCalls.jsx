@@ -10,6 +10,8 @@ import {
   getAddressSuccess,
 } from "../features/authSlice";
 import useAxios, { axiosPublic } from "./useAxios";
+import { updateProductCount } from "../features/productSlice";
+import { toastSuccess } from "../helpers/toastify";
 
 const useAuthCalls = () => {
   const dispatch = useDispatch();
@@ -23,6 +25,7 @@ const useAuthCalls = () => {
       const { data } = await axiosPublic.post("users/register/", userInfo);
       dispatch(registerSuccess(data));
       navigate("/");
+      toastSuccess("Successfully Register");
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
@@ -35,6 +38,7 @@ const useAuthCalls = () => {
       const { data } = await axiosPublic.post("/users/auth/login/", userInfo);
       dispatch(loginSuccess(data));
       navigate("/");
+      toastSuccess("Successfully Login");
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
@@ -46,6 +50,8 @@ const useAuthCalls = () => {
     try {
       await axiosWithToken.post("/users/auth/logout/");
       dispatch(logoutSuccess());
+      dispatch(updateProductCount(0));
+      toastSuccess("Successfully Logout!");
       navigate("/login");
     } catch (error) {
       console.log(error);
@@ -72,6 +78,7 @@ const useAuthCalls = () => {
         profileInfo
       );
       getProfile(id);
+      // toastSuccess("Successfully Updated");
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
@@ -94,6 +101,7 @@ const useAuthCalls = () => {
     try {
       const { data } = await axiosWithToken.put(`address/${info.id}/`, info);
       getAddress();
+      toastSuccess("Successfully Updated");
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
@@ -106,6 +114,7 @@ const useAuthCalls = () => {
     try {
       const { data } = await axiosWithToken.post(`address/`, info);
       getAddress();
+      toastSuccess("Successfully Updated");
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());

@@ -1,16 +1,25 @@
 import React from "react";
 import defaultProduct from "../assets/defaultProduct.png";
 import useProductCalls from "../hooks/useProductCalls";
+import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
+import { toastSuccess } from "../helpers/toastify";
 
 const ProductCards = ({ item }) => {
   const { addOrderItem, getAllOrderItems } = useProductCalls();
+  const { currentUser } = useSelector((state) => state.auth);
+  const navigate = useNavigate();
 
   const addCart = async () => {
-    await addOrderItem({
-      item_id: item?.id,
-      quantity: 1,
-    });
-    getAllOrderItems();
+    if (!currentUser) {
+      navigate("/login");
+    } else {
+      await addOrderItem({
+        item_id: item?.id,
+        quantity: 1,
+      });
+      getAllOrderItems();
+    }
   };
 
   return (

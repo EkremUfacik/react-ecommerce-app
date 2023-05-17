@@ -2,6 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import useAxios, { axiosPublic } from "./useAxios";
 import { updateProductCount } from "../features/productSlice";
+import { toastInfo, toastSuccess } from "../helpers/toastify";
 
 const useProductCalls = () => {
   const { axiosWithToken } = useAxios();
@@ -29,6 +30,7 @@ const useProductCalls = () => {
     try {
       const { data } = await axiosWithToken.post("orderitems/", itemData);
       console.log(data);
+      toastInfo(data.message);
     } catch (error) {
       console.log(error);
     }
@@ -68,6 +70,7 @@ const useProductCalls = () => {
     try {
       console.log(orderInfo);
       const { data } = await axiosWithToken.post(`orders/`, orderInfo);
+      toastSuccess("Order has been placed!");
     } catch (error) {
       console.log(error);
     }
