@@ -7,7 +7,6 @@ import NavBar from "../components/NavBar";
 import PrivateRouter from "./PrivateRouter";
 import Profile from "../pages/Profile";
 import Orders from "../pages/Orders";
-import { ToastContainer } from "react-toastify";
 
 const Approuter = () => {
   const [items, setItems] = useState([]);
@@ -24,9 +23,7 @@ const Approuter = () => {
         <Route path="/profile" element={<PrivateRouter />}>
           <Route path="" element={<Profile />} />
         </Route>
-        <Route path="/orders" element={<PrivateRouter />}>
-          <Route path="" element={<Orders />} />
-        </Route>
+        <Route path="/orders" element={<Orders />} />
       </Routes>
     </BrowserRouter>
   );

@@ -72,13 +72,6 @@ function Register() {
           Login
         </button>
       </form>
-      <div className=" h-full w-screen">
-        <img
-          className="h-full object-cover"
-          src="https://picsum.photos/1600/900"
-          alt="register"
-        />
-      </div>
     </div>
   );
 }

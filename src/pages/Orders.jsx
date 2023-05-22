@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import UserOrderCards from "../components/UserOrderCard";
+import UserCartCards from "../components/UserCartCard";
 import useProductCalls from "../hooks/useProductCalls";
 import useAuthCalls from "../hooks/useAuthCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import { updateProductCount } from "../features/productSlice";
 import { toastError } from "../helpers/toastify";
+import emptyCart from "../assets/empty-cart.png";
 
 const Orders = () => {
   const { getAllOrderItems, createOrder } = useProductCalls();
@@ -14,12 +15,14 @@ const Orders = () => {
   const { address, currentUser, avatar, purse } = useSelector(
     (state) => state.auth
   );
+  const { products } = useSelector((state) => state.product);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    getAllOrderItems(setOrderItems);
-  }, []);
+  const cartTotalPrice = products.reduce(
+    (acc, item) => acc + item.quantity * item.price,
+    0
+  );
 
   const [orderInfo, setOrderInfo] = useState({
     // user_id: currentUser.id,
@@ -30,8 +33,12 @@ const Orders = () => {
   });
 
   useEffect(() => {
+    getAllOrderItems(setOrderItems);
+    // setOrderItems(products);
+  }, [products.length]);
+
+  useEffect(() => {
     setOrderInfo({ ...orderInfo, items: orderItems.map((item) => item.id) });
-    console.log(orderInfo);
   }, [orderItems]);
 
   const handleOrder = async () => {
@@ -40,7 +47,11 @@ const Orders = () => {
       0
     );
 
-    console.log(orderItems);
+    if (!currentUser) {
+      toastError("Login to Continue");
+      return navigate("/login");
+    }
+
     if (orderItems.length === 0) {
       return toastError("You have nothing in your cart");
     }
@@ -56,41 +67,62 @@ const Orders = () => {
       dispatch(updateProductCount(0));
       navigate("/");
     } else {
-      alert("You don't have enough money in your purse");
+      toastError("You don't have enough money in your purse");
     }
   };
 
-  // console.log(orderInfo);
-
   return (
     <div className="pt-20 text-center p-8">
-      <p className="font-bold text-2xl mb-4 text-gray-700">My Orders</p>
+      <p className="font-bold text-2xl mb-4 text-gray-700">My Cart</p>
 
-      {orderItems?.map((item) => (
-        <UserOrderCards
-          key={item.id}
-          item={item}
-          setOrderItems={setOrderItems}
-        />
-      ))}
+      {currentUser
+        ? orderItems?.map((item) => (
+            <UserCartCards
+              key={item.id}
+              item={item}
+              setOrderItems={setOrderItems}
+            />
+          ))
+        : products?.map((item) => (
+            <UserCartCards
+              key={item.id}
+              item={item}
+              setOrderItems={setOrderItems}
+            />
+          ))}
 
-      {orderItems.length > 0 && (
-        <p>
-          Total :{" "}
-          {orderItems?.reduce((acc, val) => val.item_total_price + acc, 0)}
+      {orderItems.length > 0 ? (
+        <p className="font-bold text-lg">
+          <span className="font-normal ">Total : </span>
+          {currentUser
+            ? orderItems?.reduce((acc, val) => val.item_total_price + acc, 0)
+            : cartTotalPrice}
+          $
         </p>
+      ) : (
+        <img className="m-auto" src={emptyCart} alt="" />
       )}
 
       <div>
         <div className="mb-2">
-          <h4>Order Address :</h4>
           {address ? (
-            <p>
-              {address?.address} {address?.city} {address?.country}
-            </p>
+            <>
+              <h4 className="text-xl font-semibold">Order Address :</h4>
+              <div>
+                <p>
+                  Adress : <span>{address?.address}</span>
+                </p>
+                <p>
+                  City : <span>{address?.city}</span>
+                </p>
+                <p>
+                  Country : <span>{address?.country}</span>
+                </p>
+              </div>
+            </>
           ) : (
             <button
-              className="text-white bg-[rgb(31,41,55)] hover:bg-[rgb(112,133,173)] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-all"
+              className="text-white bg-[rgb(31,41,55)] hover:bg-darkGray focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-all my-3"
               onClick={() => navigate("/profile")}
             >
               Add Address
@@ -99,7 +131,7 @@ const Orders = () => {
         </div>
 
         <button
-          className="text-white bg-[rgb(31,41,55)] hover:bg-[rgb(112,133,173)] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-all"
+          className="text-white bg-[rgb(31,41,55)] hover:bg-darkGray focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-all"
           // disabled={orderItems.length < 1 && true}
           onClick={handleOrder}
         >

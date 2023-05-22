@@ -1,71 +1,72 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import defaultProduct from "../assets/defaultProduct.png";
 import useProductCalls from "../hooks/useProductCalls";
-import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-import { toastSuccess } from "../helpers/toastify";
+import { BsCartCheck } from "react-icons/bs";
+import { BiCartAdd } from "react-icons/bi";
 
 const ProductCards = ({ item }) => {
   const { addOrderItem, getAllOrderItems } = useProductCalls();
-  const { currentUser } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
+  const { products } = useSelector((state) => state.product);
+  const [added, setAdded] = useState(false);
+
+  useEffect(() => {
+    getAllOrderItems();
+  }, [products.length]);
 
   const addCart = async () => {
-    if (!currentUser) {
-      navigate("/login");
-    } else {
-      await addOrderItem({
-        item_id: item?.id,
-        quantity: 1,
-      });
-      getAllOrderItems();
-    }
+    await addOrderItem({
+      ...item,
+      quantity: 1,
+    });
+  };
+
+  const handleClick = () => {
+    setAdded(true);
+    addCart();
+    setTimeout(() => {
+      setAdded(false);
+    }, 1000);
   };
 
   return (
-    <div className="max-w-sm bg-white border border-gray-400 rounded-lg shadow-xl w-[350px] h-[550px] p-2 cursor-pointer hover:scale-105 transition-all text-center">
+    <div className="max-w-sm bg-white border-2 border-gray-200 rounded-lg shadow-md w-[300px] h-[430px] p-2 cursor-pointer hover:shadow-2xl hover:border-none transition-all text-center">
       <img
-        className="rounded-t-lg w-[300px] h-[350px] m-auto object-contain"
+        className="rounded-t-lg w-[300px] h-[250px] m-auto object-contain"
         src={item?.image || defaultProduct}
         alt="product"
       />
 
-      <div className="p-2 flex flex-col justify-end">
-        <div>
+      <div className="p-2 flex flex-col justify-end text-left">
+        <div className="">
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
             {item.title}
           </h5>
 
-          <p className="mb-3 font-normal text-gray-700 ">{item.description}</p>
-          <p className="mb-3 font-normal text-gray-700 ">
-            <span className="font-medium text-gray-900">Price: </span>
-            {item.price}$
+          <p className=" font-normal text-gray-700 truncate ...">
+            {item.description}
           </p>
         </div>
 
-        <div>
-          <button
-            className="inline-flex justify-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 "
-            onClick={() => addCart()}
-          >
-            Add Cart
-            <svg
-              aria-hidden="true"
-              className="w-4 h-4 ml-2 -mr-1"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
-                clipRule="evenodd"
-              ></path>
-            </svg>
+        {/* <div className=""> */}
+        <p className=" font-bold text-gray-700 my-2 text-lg ">{item.price}$</p>
+        {added ? (
+          <button className="inline-flex justify-center items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg  ">
+            <BsCartCheck size={20} />
+            Added to Cart!
           </button>
-        </div>
+        ) : (
+          <button
+            className="inline-flex justify-center items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white bg-teal-700 rounded-lg hover:bg-teal-800 "
+            onClick={handleClick}
+          >
+            <BiCartAdd size={20} />
+            Add Cart
+          </button>
+        )}
       </div>
     </div>
+    // </div>
   );
 };
 
