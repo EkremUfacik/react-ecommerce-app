@@ -54,8 +54,10 @@ export default function NavBar({ setItems }) {
     <Disclosure
       as="nav"
       className={`${
-        navChange ? "bg-transparent backdrop-blur-lg" : "bg-slate-800"
-      } fixed w-full transition-all shadow-lg z-10`}
+        navChange
+          ? "bg-transparent backdrop-blur-lg"
+          : "bg-slate-800 shadow-slate-700 "
+      } sticky top-0 w-full transition-all shadow-md z-10 `}
     >
       <>
         <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -74,7 +76,7 @@ export default function NavBar({ setItems }) {
 
             <form
               onSubmit={handleSearch}
-              className="flex-1 max-w-md mx-auto px-4"
+              className="flex-1 max-w-md mx-auto px-4 "
             >
               {/* <label
                 htmlFor="default-search"
@@ -103,7 +105,7 @@ export default function NavBar({ setItems }) {
                 <input
                   type="search"
                   id="default-search"
-                  className="block w-full p-4 pl-10 text-sm text-gray-100 border border-gray-300 rounded-lg bg-gray-900 border-none focus:outline-none placeholder:text-gray-200"
+                  className="block w-full p-4 pl-10 text-sm text-gray-100 border border-gray-300 rounded-lg bg-gray-900 border-none focus:outline-none placeholder:text-gray-200 shadow shadow-gray-500"
                   placeholder="Search"
                   required
                   value={search || ""}
@@ -122,7 +124,7 @@ export default function NavBar({ setItems }) {
               <button
                 type="button"
                 className="relative w-8 h-8 flex justify-center items-center bg-gray-800 p-4 text-gray-400 hover:text-white
-                border-2 border-gray-500 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                border-2 border-gray-500 focus:outline-none "
                 onClick={() => navigate("/orders")}
               >
                 <i className="fa-solid fa-cart-shopping fa-lg"></i>

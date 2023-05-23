@@ -67,42 +67,44 @@ const UserCartCards = ({ item, setOrderItems }) => {
   return (
     <>
       {product.quantity > 0 && (
-        <div className=" flex justify-between items-center mb-2 px-8 border-2 rounded-xl">
-          <div className="flex justify-center items-center p-4">
-            <div className="flex justify-center items-center">
+        <div className="flex justify-between items-center border-b-2 w-full lg:w-4/5 m-auto">
+          <div className="flex justify-center items-center p-2">
+            <div className="flex-shrink-0">
               <img
-                className="rounded-full w-20 h-20 m-auto object-contain"
+                className=" w-[120px] h-[140px] object-contain"
                 src={product?.item?.image || defaultProduct}
                 alt="product"
               />
             </div>
 
-            <div className="flex flex-col justify-center items-center ml-6">
-              <p className="font-semibold">{product.item?.title}</p>
-              <p>{product.item?.description}</p>
+            <div className="flex flex-col justify-center items-start ml-6">
+              <p className="font-semibold text-lg">{product.item?.title}</p>
+              <p className="text-left font-thin text-gray-600">
+                {product.item?.description}
+              </p>
             </div>
           </div>
 
-          <div className="flex gap-8">
+          <div className="flex gap-8 justify-center items-center">
             {/* <p className="font-bold">{product.item_total_price}$</p> */}
-            <p className="font-bold">{product.item_total_price}$</p>
+            <p className="font-bold text-lg">{product.item_total_price}$</p>
 
-            <div className="flex justify-center items-center gap-4 border-2 border-gray-600 rounded-2xl px-2">
+            <div className="flex justify-center items-center gap-4 bg-sky-50 rounded-2xl px-4 py-1 text-lg text-gray-600">
               <i
-                className="fa-solid fa-minus hover:text-red-600 hover:scale-110 transition-all active:scale-90 cursor-pointer"
+                className="fa-solid fa-minus text-sm text-gray-500 hover:text-red-600 hover:scale-110 transition-all active:scale-75 cursor-pointer "
                 onClick={decreaseQuantity}
               ></i>
 
               {product.quantity}
 
               <i
-                className="fa-solid fa-plus hover:text-green-600 hover:scale-110 transition-all active:scale-90 cursor-pointer"
+                className="fa-solid fa-plus hover:text-green-600 hover:scale-110 transition-all active:scale-75 cursor-pointer text-gray-500 text-sm"
                 onClick={increaseQuantity}
               ></i>
             </div>
             <div>
               <i
-                className="fa-solid fa-trash-can text-red-500 cursor-pointer hover:text-red-900"
+                className="fa-solid fa-trash-can text-red-400 cursor-pointer hover:text-red-500 bg-red-100 p-2 rounded-full"
                 onClick={handleDelete}
               ></i>
             </div>

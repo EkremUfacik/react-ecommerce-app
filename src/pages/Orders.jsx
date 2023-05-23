@@ -73,7 +73,7 @@ const Orders = () => {
 
   return (
     <div className="pt-20 text-center p-8">
-      <p className="font-bold text-2xl mb-4 text-gray-700">My Cart</p>
+      <p className="font-bold text-2xl mb-4 text-gray-700">Shopping Cart</p>
 
       {currentUser
         ? orderItems?.map((item) => (
@@ -104,19 +104,22 @@ const Orders = () => {
       )}
 
       <div>
-        <div className="mb-2">
+        <div className="my-4">
           {address ? (
             <>
-              <h4 className="text-xl font-semibold">Order Address :</h4>
-              <div>
-                <p>
-                  Adress : <span>{address?.address}</span>
+              <h4 className="text-xl font-semibold mb-3">Order Address :</h4>
+              <div className="w-[24rem] m-auto text-left">
+                <p className="font-bold border-4 border-b-0 pl-2">
+                  Adress :{" "}
+                  <span className="font-normal italic">{address?.address}</span>
                 </p>
-                <p>
-                  City : <span>{address?.city}</span>
+                <p className="font-bold border-4 border-b-0 pl-2">
+                  City :{" "}
+                  <span className="font-normal italic ">{address?.city}</span>
                 </p>
-                <p>
-                  Country : <span>{address?.country}</span>
+                <p className="font-bold border-4 pl-2">
+                  Country :{" "}
+                  <span className="font-normal italic">{address?.country}</span>
                 </p>
               </div>
             </>
