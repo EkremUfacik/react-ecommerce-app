@@ -20,7 +20,7 @@ const Dashboard = ({ items, setItems }) => {
   }, []);
 
   return (
-    <div className="mb-8">
+    <div className="pb-16">
       <div className="p-4 bg-gradient-to-b from-sky-900">
         {/* <h1 className="text-4xl p-8">E-Commerce by {"<HMZAYGN/>"}</h1> */}
         <img

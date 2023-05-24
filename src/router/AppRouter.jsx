@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Register from "../pages/Register";
-import Login from "../pages/Login";
 import Dashboard from "../pages/Dashboard";
 import NavBar from "../components/NavBar";
 import PrivateRouter from "./PrivateRouter";
 import Profile from "../pages/Profile";
 import Orders from "../pages/Orders";
+import LogRes from "../pages/LogReg";
 
 const Approuter = () => {
   const [items, setItems] = useState([]);
@@ -19,7 +19,7 @@ const Approuter = () => {
           element={<Dashboard items={items} setItems={setItems} />}
         />
         <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/login" element={<LogRes />} />
         <Route path="/profile" element={<PrivateRouter />}>
           <Route path="" element={<Profile />} />
         </Route>

@@ -68,7 +68,7 @@ export default function NavBar({ setItems }) {
               onClick={handleNavigate}
             >
               <img
-                className="block h-10 w-auto border-2 border-blue-200 rounded-full"
+                className="block h-10 w-10 rounded-full drop-shadow-xl"
                 src={navbarImage}
                 alt="Your Company"
               />
