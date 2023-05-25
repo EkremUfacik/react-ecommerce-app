@@ -72,7 +72,7 @@ const Orders = () => {
   };
 
   return (
-    <div className="pt-20 text-center p-8">
+    <div className="pt-10 text-center p-8">
       <p className="font-bold text-2xl mb-4 text-gray-700">Shopping Cart</p>
 
       {currentUser
@@ -92,7 +92,7 @@ const Orders = () => {
           ))}
 
       {orderItems.length > 0 ? (
-        <p className="font-bold text-lg">
+        <p className="font-bold text-lg mt-4">
           <span className="font-normal ">Total : </span>
           {currentUser
             ? orderItems?.reduce((acc, val) => val.item_total_price + acc, 0)
@@ -109,15 +109,15 @@ const Orders = () => {
             <>
               <h4 className="text-xl font-semibold mb-3">Order Address :</h4>
               <div className="w-[24rem] m-auto text-left">
-                <p className="font-bold border-4 border-b-0 pl-2">
+                <p className="font-bold border-gray-400 border border-b-0 p-2 pl-4">
                   Adress :{" "}
                   <span className="font-normal italic">{address?.address}</span>
                 </p>
-                <p className="font-bold border-4 border-b-0 pl-2">
+                <p className="font-bold border-gray-400 border border-b-0 p-2 pl-4">
                   City :{" "}
                   <span className="font-normal italic ">{address?.city}</span>
                 </p>
-                <p className="font-bold border-4 pl-2">
+                <p className="font-bold border-gray-400 border p-2 pl-4">
                   Country :{" "}
                   <span className="font-normal italic">{address?.country}</span>
                 </p>
@@ -125,7 +125,7 @@ const Orders = () => {
             </>
           ) : (
             <button
-              className="text-white bg-[rgb(31,41,55)] hover:bg-darkGray focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-all my-3"
+              className="text-white bg-gray-800 hover:bg-dark focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all my-3"
               onClick={() => navigate("/profile")}
             >
               Add Address
@@ -134,7 +134,7 @@ const Orders = () => {
         </div>
 
         <button
-          className="text-white bg-[rgb(31,41,55)] hover:bg-darkGray focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center transition-all"
+          className="text-white bg-primary hover:bg-indigo-900 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all"
           // disabled={orderItems.length < 1 && true}
           onClick={handleOrder}
         >

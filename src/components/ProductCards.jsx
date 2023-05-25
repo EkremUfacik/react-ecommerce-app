@@ -30,7 +30,7 @@ const ProductCards = ({ item }) => {
   };
 
   return (
-    <div className="max-w-sm bg-white border-2 border-gray-200 rounded-lg shadow-md w-[250px] h-[400px] p-2 cursor-pointer hover:shadow-2xl hover:border-none transition-all text-center">
+    <div className="max-w-sm bg-white border-2 border-gray-200 rounded-lg shadow-md w-[250px] h-[420px] p-2 cursor-pointer hover:shadow-2xl hover:border-none transition-all text-center">
       <img
         className="rounded-t-lg w-[220px] h-[220px] m-auto object-contain"
         src={item?.image || defaultProduct}
@@ -39,7 +39,7 @@ const ProductCards = ({ item }) => {
 
       <div className="p-2 flex flex-col justify-end text-left">
         <div className="">
-          <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
+          <h5 className="mb-4 text-2xl font-bold tracking-tight text-gray-900 ">
             {item.title}
           </h5>
 

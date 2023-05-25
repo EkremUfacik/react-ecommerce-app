@@ -2,40 +2,24 @@ import { useState } from "react";
 import { RxEyeClosed } from "react-icons/rx";
 import { FaRegEye } from "react-icons/fa";
 
-const usePasswordToggle1 = () => {
+const usePasswordToggle = () => {
   const [visible, setVisiblity] = useState(false);
 
-  const Icon = (
+  const changeVisible = () => setVisiblity(!visible);
+
+  const icon = (
     <>
       {visible ? (
-        <FaRegEye onClick={() => setVisiblity((visiblity) => !visiblity)} />
+        <FaRegEye onClick={changeVisible} />
       ) : (
-        <RxEyeClosed onClick={() => setVisiblity((visiblity) => !visiblity)} />
+        <RxEyeClosed onClick={changeVisible} />
       )}
     </>
   );
 
-  const InputType = visible ? "text" : "password";
+  const inputType = visible ? "text" : "password";
 
-  return [InputType, Icon];
+  return [inputType, icon];
 };
 
-export default usePasswordToggle1;
-
-export const usePasswordToggle2 = () => {
-  const [visible, setVisiblity] = useState(false);
-
-  const Icon = (
-    <>
-      {visible ? (
-        <FaRegEye onClick={() => setVisiblity((visiblity) => !visiblity)} />
-      ) : (
-        <RxEyeClosed onClick={() => setVisiblity((visiblity) => !visiblity)} />
-      )}
-    </>
-  );
-
-  const InputType = visible ? "text" : "password";
-
-  return [InputType, Icon];
-};
+export default usePasswordToggle;

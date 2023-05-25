@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import useAuthCalls from "../hooks/useAuthCalls";
-import usePasswordToggle1, { usePasswordToggle2 } from "./usePasswordToggle";
+import usePasswordToggle from "./usePasswordToggle";
 
 function Register() {
   const { register } = useAuthCalls();
@@ -13,8 +12,8 @@ function Register() {
     password: "",
     password2: "",
   });
-  const [passwordInputType1, toggleIcon1] = usePasswordToggle1();
-  const [passwordInputType2, toggleIcon2] = usePasswordToggle2();
+  const [passwordInputType1, toggleIcon1] = usePasswordToggle();
+  const [passwordInputType2, toggleIcon2] = usePasswordToggle();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -150,7 +149,7 @@ function Register() {
 
       <button
         type="submit"
-        className="text-white font-medium rounded-lg text-sm w-full bg-primary hover:opacity-95 px-5 py-2.5 text-center "
+        className="text-white font-medium rounded-lg text-sm w-full bg-primary hover:bg-indigo-900 px-5 py-2.5 text-center "
       >
         Register
       </button>

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
 import useAuthCalls from "../hooks/useAuthCalls";
-import usePasswordToggle1 from "./usePasswordToggle";
+import usePasswordToggle from "./usePasswordToggle";
 
 function Login() {
   const { login } = useAuthCalls();
@@ -9,7 +8,7 @@ function Login() {
     email: "",
     password: "",
   });
-  const [passwordInputType1, toggleIcon1] = usePasswordToggle1();
+  const [passwordInputType, toggleIcon] = usePasswordToggle();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,7 +52,7 @@ function Login() {
           Password
         </label>
         <input
-          type={passwordInputType1}
+          type={passwordInputType}
           id="password"
           name="password"
           value={userInfo.password || ""}
@@ -63,13 +62,13 @@ function Login() {
           required
         />
         <div className="absolute right-4 bottom-3 cursor-pointer">
-          {toggleIcon1}
+          {toggleIcon}
         </div>
       </div>
 
       <button
         type="submit"
-        className="text-white bg-primary hover:opacity-95 focus:outline-none font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center "
+        className="text-white bg-primary hover:bg-indigo-900 focus:outline-none font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center "
       >
         Login
       </button>
