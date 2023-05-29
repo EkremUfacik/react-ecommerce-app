@@ -86,7 +86,7 @@ const Profile = () => {
       </div>
 
       <form className="pb-10" onSubmit={handleSubmit}>
-        <p className="font-bold font-serif text-gray-600 text-xl mb-4">
+        <p className="font-bold font-serif text-gray-600 text-xl my-4">
           My Address
         </p>
 
