@@ -41,8 +41,7 @@ const useProductCalls = () => {
         console.log(error);
       }
     } else {
-      products?.some((el) => el.id === itemData.id) ||
-        dispatch(addProduct({ ...itemData, quantity: 1 }));
+      dispatch(addProduct(itemData));
     }
   };
 

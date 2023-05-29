@@ -7,6 +7,7 @@ import PrivateRouter from "./PrivateRouter";
 import Profile from "../pages/Profile";
 import Orders from "../pages/Orders";
 import LogRes from "../pages/LogReg";
+import ProductDetail from "../pages/ProductDetail";
 
 const Approuter = () => {
   const [items, setItems] = useState([]);
@@ -24,6 +25,7 @@ const Approuter = () => {
           <Route path="" element={<Profile />} />
         </Route>
         <Route path="/orders" element={<Orders />} />
+        <Route path="/detail:id" element={<ProductDetail />} />
       </Routes>
     </BrowserRouter>
   );

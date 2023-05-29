@@ -138,9 +138,9 @@ export default function NavBar({ setItems }) {
 
                 {currentUser &&
                   (purse ? (
-                    <p className=" text-gray-400 px-2">{purse}$</p>
+                    <p className=" text-white pl-4">{purse} $</p>
                   ) : (
-                    <p className=" text-gray-400 px-2">0$</p>
+                    <p className=" text-gray-400 pl-4">0 $</p>
                   ))}
 
                 {/* Profile dropdown */}
@@ -178,19 +178,7 @@ export default function NavBar({ setItems }) {
                           </Link>
                         )}
                       </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <Link
-                            to="#"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700"
-                            )}
-                          >
-                            Admin Panel
-                          </Link>
-                        )}
-                      </Menu.Item>
+
                       <Menu.Item>
                         {({ active }) => (
                           <Link

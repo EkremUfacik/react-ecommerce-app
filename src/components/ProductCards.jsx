@@ -12,6 +12,7 @@ const ProductCards = ({ item }) => {
 
   useEffect(() => {
     getAllOrderItems();
+    // eslint-disable-next-line
   }, [products.length]);
 
   const addCart = async () => {
@@ -51,7 +52,10 @@ const ProductCards = ({ item }) => {
         {/* <div className=""> */}
         <p className=" font-bold text-gray-700 my-2 text-lg ">{item.price}$</p>
         {added ? (
-          <button className="inline-flex justify-center items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg  ">
+          <button
+            className="inline-flex justify-center items-center gap-2 px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg"
+            disabled
+          >
             <BsCartCheck size={20} />
             Added to Cart!
           </button>

@@ -11,7 +11,7 @@ import {
 } from "../features/authSlice";
 import useAxios, { axiosPublic } from "./useAxios";
 import { updateProductCount } from "../features/productSlice";
-import { toastSuccess } from "../helpers/toastify";
+import { toastError, toastSuccess } from "../helpers/toastify";
 
 const useAuthCalls = () => {
   const dispatch = useDispatch();
@@ -29,6 +29,7 @@ const useAuthCalls = () => {
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
+      toastError("Something went wrong!");
     }
   };
 
@@ -73,12 +74,8 @@ const useAuthCalls = () => {
   const updateProfile = async (id, profileInfo) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.put(
-        `/users/profile/${id}/`,
-        profileInfo
-      );
+      await axiosWithToken.put(`/users/profile/${id}/`, profileInfo);
       getProfile(id);
-      // toastSuccess("Successfully Updated");
     } catch (error) {
       console.log(error);
       dispatch(fetchFail());
@@ -99,7 +96,7 @@ const useAuthCalls = () => {
   const updateAddress = async (info) => {
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.put(`address/${info.id}/`, info);
+      await axiosWithToken.put(`address/${info.id}/`, info);
       getAddress();
       toastSuccess("Successfully Updated");
     } catch (error) {
@@ -112,7 +109,7 @@ const useAuthCalls = () => {
     info["user"] = currentUser.id;
     dispatch(fetchStart());
     try {
-      const { data } = await axiosWithToken.post(`address/`, info);
+      await axiosWithToken.post(`address/`, info);
       getAddress();
       toastSuccess("Successfully Updated");
     } catch (error) {

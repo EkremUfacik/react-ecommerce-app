@@ -14,7 +14,13 @@ const productSlice = createSlice({
     },
 
     addProduct: (state, { payload }) => {
-      state.products.push(payload);
+      const productIndex = state.products.findIndex(
+        (el) => el.id === payload.id
+      );
+      console.log(productIndex);
+      productIndex === -1
+        ? state.products.push(payload)
+        : state.products[productIndex].quantity++;
     },
     removeProduct: (state, { payload }) => {
       state.products = state.products.filter(
