@@ -140,7 +140,7 @@ export default function NavBar({ setItems }) {
                   (purse ? (
                     <p className=" text-white pl-4">{purse} $</p>
                   ) : (
-                    <p className=" text-gray-400 pl-4">0 $</p>
+                    <p className=" text-white pl-4">0 $</p>
                   ))}
 
                 {/* Profile dropdown */}
