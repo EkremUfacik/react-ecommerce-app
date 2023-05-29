@@ -63,7 +63,7 @@ const UserCartCards = ({ item, setOrderItems }) => {
     <>
       {product.quantity > 0 && (
         <div className="flex justify-between items-center border-b-2 w-full lg:w-4/5 m-auto md:flex-row flex-col gap-4">
-          <div className="flex justify-center items-center p-2">
+          <div className="flex justify-center items-center self-start p-2">
             <div className="flex-shrink-0">
               <img
                 className=" w-[120px] h-[140px] object-contain"
@@ -80,7 +80,7 @@ const UserCartCards = ({ item, setOrderItems }) => {
             </div>
           </div>
 
-          <div className="flex gap-8 justify-center items-center">
+          <div className="flex gap-8 justify-center items-center mb-2">
             {/* <p className="font-bold">{product.item_total_price}$</p> */}
             <p className="font-bold text-lg">{product.item_total_price}$</p>
 
