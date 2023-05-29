@@ -17,6 +17,7 @@ const Dashboard = ({ items, setItems }) => {
     getAllItems(setItems);
     getAllOrderItems();
     currentUser && getAddress();
+    // eslint-disable-next-line
   }, []);
 
   return (

@@ -35,10 +35,12 @@ const Orders = () => {
   useEffect(() => {
     getAllOrderItems(setOrderItems);
     // setOrderItems(products);
+    // eslint-disable-next-line
   }, [products.length]);
 
   useEffect(() => {
     setOrderInfo({ ...orderInfo, items: orderItems.map((item) => item.id) });
+    // eslint-disable-next-line
   }, [orderItems]);
 
   const handleOrder = async () => {

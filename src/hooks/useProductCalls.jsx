@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import useAxios, { axiosPublic } from "./useAxios";
 import { removeAllProduct, updateProductCount } from "../features/productSlice";
-import { toastInfo, toastSuccess } from "../helpers/toastify";
+import { toastSuccess } from "../helpers/toastify";
 import { addProduct } from "../features/productSlice";
 
 const useProductCalls = () => {
@@ -31,7 +31,7 @@ const useProductCalls = () => {
   const addOrderItem = async (itemData) => {
     if (currentUser) {
       try {
-        const { data } = await axiosWithToken.post("orderitems/", {
+        await axiosWithToken.post("orderitems/", {
           item_id: itemData.id,
           quantity: itemData.quantity,
         });
@@ -79,7 +79,7 @@ const useProductCalls = () => {
 
   const deleteOrderItems = async (id, setOrderItems) => {
     try {
-      const { data } = await axiosWithToken.delete(`orderitems/${id}/`);
+      await axiosWithToken.delete(`orderitems/${id}/`);
       getAllOrderItems(setOrderItems);
     } catch (error) {
       console.log(error);
@@ -89,7 +89,7 @@ const useProductCalls = () => {
   const createOrder = async (orderInfo) => {
     try {
       console.log(orderInfo);
-      const { data } = await axiosWithToken.post(`orders/`, orderInfo);
+      await axiosWithToken.post(`orders/`, orderInfo);
       toastSuccess("Order has been placed!");
     } catch (error) {
       console.log(error);

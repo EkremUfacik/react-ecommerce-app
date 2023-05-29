@@ -10,11 +10,9 @@ import {
 
 const UserCartCards = ({ item, setOrderItems }) => {
   const { currentUser } = useSelector((state) => state.auth);
-  const { updateOrderItems, deleteOrderItems, getAllOrderItems } =
-    useProductCalls();
+  const { updateOrderItems, deleteOrderItems } = useProductCalls();
   const [product, setProduct] = useState(item);
   const dispatch = useDispatch();
-  const { products } = useSelector((state) => state.product);
 
   useEffect(() => {
     currentUser ||
@@ -24,11 +22,8 @@ const UserCartCards = ({ item, setOrderItems }) => {
         item_total_price: item.quantity * item.price,
       });
     item.quantity === 0 && dispatch(removeProduct(product.item.id));
+    // eslint-disable-next-line
   }, [item.quantity]);
-
-  // useEffect(() => {
-  //   currentUser || setProduct(item);
-  // }, [item.quantity]);
 
   const decreaseQuantity = () => {
     if (currentUser) {
