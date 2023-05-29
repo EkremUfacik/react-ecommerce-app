@@ -6,7 +6,7 @@ const LogRes = () => {
   const [isLog, setIsLog] = useState(true);
   return (
     <div className="flex" style={{ height: "calc(100% - 64px)" }}>
-      <div className="w-[28rem] m-auto ">
+      <div className="sm:w-[28rem] w-[25rem] m-auto ">
         <div className="flex gap-2 ">
           <div
             className={`${

@@ -110,7 +110,7 @@ const Orders = () => {
           {address ? (
             <>
               <h4 className="text-xl font-semibold mb-3">Order Address :</h4>
-              <div className="w-[24rem] m-auto text-left">
+              <div className="w-[20rem] sm:w-[24rem] m-auto text-left">
                 <p className="font-bold border-gray-400 border border-b-0 p-2 pl-4">
                   Adress :{" "}
                   <span className="font-normal italic">{address?.address}</span>

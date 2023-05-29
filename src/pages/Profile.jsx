@@ -91,7 +91,7 @@ const Profile = () => {
         </p>
 
         {toggleAddress ? (
-          <div className="flex flex-col items-center justify-center w-[30rem] m-auto gap-1">
+          <div className="flex flex-col items-center justify-center w-[20rem] sm:w-[30rem] m-auto gap-1">
             <input
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:border-zinc-400 outline-none block p-2.5 w-full"
               type="text"

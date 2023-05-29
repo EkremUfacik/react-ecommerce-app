@@ -27,10 +27,10 @@ function Register() {
 
   return (
     <form
-      className="bg-white p-10 border border-gray-300 border-t-0"
+      className="bg-white p-10 border border-gray-300 border-t-0 sm:w-[28rem] w-[25rem]"
       onSubmit={handleSubmit}
     >
-      <div className="grid gap-6 mb-6 md:grid-cols-2">
+      <div className="grid gap-2 mb-2 md:grid-cols-2">
         <div>
           <label
             htmlFor="first_name"
@@ -44,7 +44,7 @@ function Register() {
             name="first_name"
             value={userInfo?.first_name || ""}
             onChange={handleChange}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5 focus:border-zinc-400 outline-none"
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:border-zinc-400 outline-none "
             placeholder="First Name"
             required
           />
@@ -68,7 +68,7 @@ function Register() {
           />
         </div>
       </div>
-      <div className="mb-6">
+      <div className="mb-4">
         <label
           htmlFor="username"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -86,7 +86,7 @@ function Register() {
           required
         />
       </div>
-      <div className="mb-6">
+      <div className="mb-4">
         <label
           htmlFor="email"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -104,7 +104,7 @@ function Register() {
           required
         />
       </div>
-      <div className="mb-6 relative">
+      <div className="mb-4 relative">
         <label
           htmlFor="password"
           className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"

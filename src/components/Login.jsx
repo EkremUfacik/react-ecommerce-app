@@ -23,7 +23,7 @@ function Login() {
   return (
     // <div className=" w-[28rem] p-10 m-auto">
     <form
-      className=" w-[28rem] p-10 m-auto bg-white border border-gray-300 border-t-0"
+      className=" sm:w-[28rem] w-[25rem] p-10 m-auto bg-white border border-gray-300 border-t-0"
       onSubmit={handleSubmit}
     >
       <div className="mb-6">
