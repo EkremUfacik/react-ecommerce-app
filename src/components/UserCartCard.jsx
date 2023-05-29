@@ -62,7 +62,7 @@ const UserCartCards = ({ item, setOrderItems }) => {
   return (
     <>
       {product.quantity > 0 && (
-        <div className="flex justify-between items-center border-b-2 w-full lg:w-4/5 m-auto">
+        <div className="flex justify-between items-center border-b-2 w-full lg:w-4/5 m-auto md:flex-row flex-col gap-4">
           <div className="flex justify-center items-center p-2">
             <div className="flex-shrink-0">
               <img
