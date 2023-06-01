@@ -3,12 +3,16 @@ import { createSlice } from "@reduxjs/toolkit";
 const productSlice = createSlice({
   name: "product",
   initialState: {
+    loading: false,
     productCount: 0,
     products: [],
     // items: items,
     // setItems: setItems,
   },
   reducers: {
+    fetchStart: (state) => {
+      state.loading = true;
+    },
     updateProductCount: (state, { payload }) => {
       state.productCount = payload;
     },
@@ -36,15 +40,20 @@ const productSlice = createSlice({
     removeAllProduct: (state) => {
       state.products = [];
     },
+    fetchEnd: (state) => {
+      state.loading = false;
+    },
   },
 });
 
 export const {
+  fetchStart,
   updateProductCount,
   addProduct,
   removeProduct,
   removeAllProduct,
   increaseProduct,
   decreaseProduct,
+  fetchEnd,
 } = productSlice.actions;
 export default productSlice.reducer;

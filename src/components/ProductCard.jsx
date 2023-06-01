@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { BsCartCheck } from "react-icons/bs";
 import { BiCartAdd } from "react-icons/bi";
 
-const ProductCards = ({ item }) => {
+const ProductCard = ({ item }) => {
   const { addOrderItem, getAllOrderItems } = useProductCalls();
   const { products } = useSelector((state) => state.product);
   const [added, setAdded] = useState(false);
@@ -74,4 +74,4 @@ const ProductCards = ({ item }) => {
   );
 };
 
-export default ProductCards;
+export default ProductCard;

@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import useAxios, { axiosPublic } from "./useAxios";
-import { removeAllProduct, updateProductCount } from "../features/productSlice";
+import {
+  fetchEnd,
+  fetchStart,
+  removeAllProduct,
+  updateProductCount,
+} from "../features/productSlice";
 import { toastSuccess } from "../helpers/toastify";
 import { addProduct } from "../features/productSlice";
 
@@ -12,10 +17,14 @@ const useProductCalls = () => {
 
   const getAllItems = async (setItems) => {
     try {
+      dispatch(fetchStart());
       const { data } = await axiosPublic.get("items/");
+      getAllOrderItems();
       setItems(data);
     } catch (error) {
       console.log(error);
+    } finally {
+      dispatch(fetchEnd());
     }
   };
 
@@ -53,11 +62,14 @@ const useProductCalls = () => {
   const getAllOrderItems = async (setOrderItems = null) => {
     if (currentUser) {
       try {
+        // dispatch(fetchStart());
         const { data } = await axiosWithToken.get("orderitems/");
         dispatch(updateProductCount(data.length));
         setOrderItems && setOrderItems(data);
       } catch (error) {
         console.log(error);
+      } finally {
+        // dispatch(fetchEnd());
       }
     } else {
       console.log(products);

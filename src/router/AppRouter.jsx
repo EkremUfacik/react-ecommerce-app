@@ -5,9 +5,9 @@ import Dashboard from "../pages/Dashboard";
 import NavBar from "../components/NavBar";
 import PrivateRouter from "./PrivateRouter";
 import Profile from "../pages/Profile";
-import Orders from "../pages/Orders";
 import LogRes from "../pages/LogReg";
 import ProductDetail from "../pages/ProductDetail";
+import Cart from "../pages/Cart";
 
 const Approuter = () => {
   const [items, setItems] = useState([]);
@@ -24,7 +24,7 @@ const Approuter = () => {
         <Route path="/profile" element={<PrivateRouter />}>
           <Route path="" element={<Profile />} />
         </Route>
-        <Route path="/orders" element={<Orders />} />
+        <Route path="/orders" element={<Cart />} />
         <Route path="/detail:id" element={<ProductDetail />} />
       </Routes>
     </BrowserRouter>

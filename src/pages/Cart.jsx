@@ -4,18 +4,23 @@ import useProductCalls from "../hooks/useProductCalls";
 import useAuthCalls from "../hooks/useAuthCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import { updateProductCount } from "../features/productSlice";
+import {
+  fetchEnd,
+  fetchStart,
+  updateProductCount,
+} from "../features/productSlice";
 import { toastError } from "../helpers/toastify";
 import emptyCart from "../assets/empty-cart.png";
+import SkeletonCard from "../components/SkeletonCard";
 
-const Orders = () => {
+const Cart = () => {
   const { getAllOrderItems, createOrder } = useProductCalls();
   const { updateProfile } = useAuthCalls();
   const [orderItems, setOrderItems] = useState([]);
   const { address, currentUser, avatar, purse } = useSelector(
     (state) => state.auth
   );
-  const { products } = useSelector((state) => state.product);
+  const { products, loading } = useSelector((state) => state.product);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -33,7 +38,12 @@ const Orders = () => {
   });
 
   useEffect(() => {
-    getAllOrderItems(setOrderItems);
+    const fetchItems = async () => {
+      dispatch(fetchStart());
+      await getAllOrderItems(setOrderItems);
+      dispatch(fetchEnd());
+    };
+    fetchItems();
     // setOrderItems(products);
     // eslint-disable-next-line
   }, [products.length]);
@@ -76,8 +86,11 @@ const Orders = () => {
   return (
     <div className="pt-10 text-center p-8">
       <p className="font-bold text-2xl mb-4 text-gray-700">Shopping Cart</p>
-
-      {currentUser
+      {loading
+        ? Array.from({ length: 3 }, (v, i) => i).map((el) => (
+            <SkeletonCard key={el} props={"cart"} />
+          ))
+        : currentUser
         ? orderItems?.map((item) => (
             <UserCartCards
               key={item.id}
@@ -93,7 +106,7 @@ const Orders = () => {
             />
           ))}
 
-      {orderItems.length > 0 ? (
+      {loading || orderItems.length > 0 ? (
         <p className="font-bold text-lg mt-4">
           <span className="font-normal ">Total : </span>
           {currentUser
@@ -147,4 +160,4 @@ const Orders = () => {
   );
 };
 
-export default Orders;
+export default Cart;
