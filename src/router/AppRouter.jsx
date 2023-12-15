@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import NavBar from "../components/NavBar";
 import PrivateRouter from "./PrivateRouter";
@@ -19,7 +18,6 @@ const Approuter = () => {
           index
           element={<Dashboard items={items} setItems={setItems} />}
         />
-        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<LogRes />} />
         <Route path="/profile" element={<PrivateRouter />}>
           <Route path="" element={<Profile />} />

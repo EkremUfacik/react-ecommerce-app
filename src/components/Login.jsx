@@ -5,8 +5,8 @@ import usePasswordToggle from "./usePasswordToggle";
 function Login() {
   const { login } = useAuthCalls();
   const [userInfo, setUserInfo] = useState({
-    email: "",
-    password: "",
+    email: "ee@ee.com",
+    password: "Ee123456.",
   });
   const [passwordInputType, toggleIcon] = usePasswordToggle();
 
